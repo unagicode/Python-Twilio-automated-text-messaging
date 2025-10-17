@@ -1,4 +1,4 @@
-# Python-Twilio-automated-text-messaging
+# Python - Twilio automated text messaging
 Project - Good Morning Text Message Sender
 
 Description - You can send free automated text message of an inspirational quote to your cell phone everyday at 6:00 am. Here is the Python code to do that using Twilio and Replit.
