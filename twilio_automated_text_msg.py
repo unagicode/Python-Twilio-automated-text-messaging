@@ -1,0 +1,21 @@
+
+from replit import db
+from twilio.rest import Client
+import time
+import schedule
+import random
+db["account_sid"] = 'A45827ed4d1a338cfc8bccb0C330aa532a'
+db["auth_token"] = '33d70790eaeca726ccaf181b4853a185'
+db["twilio_num"] = '+15555555555'
+db["cell_num"] = '+14443338888'
+db["morning_msg"] = db["basketballQuotes"][random.randint(0,  len(db["basketballQuotes"]) - 1)]
+client = Client(db["account_sid"], db["auth_token"])
+msg = client.messages.create(from_ = db["twilio_num"], 
+body = db["morning_msg"], to = db["cell_num"])
+db["basketballQuotes"] = ["Create unselfishness as the most important team attribute – Bill Russell","Concentration and mental toughness are the margins of victory – Bill Russell","The most important thing to me is the friends that I’ve made – Bill Russell","The most important measure of how good a game I played was how much better I’d made my teammates play – Bill Russell","Remember that basketball is a game of habits. If you make the other guy deviate from his habits, you’ve got him – Bill Russell","Commitment separates those who live their dreams from those who live their lives regretting the opportunities they have squandered – Bill Russell","What distinguishes a great player is his presence. When he goes on to the court, his presence dominates the atmosphere – Bill Russell","The only important statistic is the final score – Bill Russell","The idea is not to block every shot. The idea is to make your opponent believe that you might block every shot – Bill Russell","The single most important aspect of coaching is running effective practices – Bob Knight","The key is not the ‘will to win’… everybody has that. It is the will to prepare to win that is important – Bob Knight","You don’t play against opponents; you play against the game of basketball – Bob Knight","The goal is to make practice more difficult, physically/mentally, than anything your players will face during a game – Bob Knight","Basketball is a full court game, so every drill must be done full court – Bob Knight","I always designed my practice plans the night before and then made tweaks a few hours before practice began – Bob Knight","I hate casual shooting. Every shot is preceded by working to get open and catch and shoot under game like conditions – Bob Knight","What is the best thing you can do in a close game? Drive to the basket and put pressure on the defense! Not jack up jump shots – Bob Knight","Passing is your best weapon against man to man. Dribble penetration is your best weapon against zone – Bob Knight","Players must be able to carry out simple instructions from the bench to the court. If they can’t, then they can’t play – Bob Knight","Discipline is doing what has to be done, when it has to be done, as well as it can be done, and doing it that way all the time – Bob Knight","I just love the game of basketball so much. The game! I don’t need the 18,000 people screaming and all the peripheral things. To me, the most enjoyable part is the practice and preparation – Bob Knight","Mental is to the physical as four is to one – Bob Knight","Offense is not equal opportunity – Bob Knight","Perform drills that force your players to think – Bob Knight","I sit and wonder why no one uses the shot fake. The shot fake, when used correctly, can eliminate a defender – Bob Knight","Coaches shouldn’t have to push you to work hard, you should push yourself to work hard because you want to be a great player – Bob Knight","A quick way for any player to make himself better is to think about what he himself doesn’t like to play against – Bob Knight","Good basketball always starts with good defense! – Bob Knight","My practices were not set up to be easy or enjoyed – Bob Knight","In order to achieve to achieve positive results, one must work for them, not hope for them – Bob Knight","Defense is all about helping. No one can guard a good dribbler, you have to walk kids through how to help and then how to help the helper – Bob Knight"]
+def task():
+  print(msg.body)
+schedule.every().day.at("10:00").do(task)
+while True:
+  schedule.run_pending()
+  time.sleep(1)
