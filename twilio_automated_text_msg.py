@@ -1,4 +1,3 @@
-
 from replit import db
 from twilio.rest import Client
 import time
